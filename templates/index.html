@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+    <title>Home</title>
+</head>
+<body>
+    <div class="main_container">
+        <div class="header_container">
+            <p>Your Gold:</p>
+            <div class="gold_display">{{session['gold']}}</div>
+        </div>
+        <div class="venue_container">
+            <div class="farm_container">
+                <div class="farm_header">Farm</div>
+                <div class="farm_earning">(earns 10-20 gold)</div>
+                <form action='/process_money' method="post" class="button_farm">
+                        <input type="hidden" name= 'real_estate' value="farm">
+                        <input type="submit" value='Find Gold!'>
+                </form>
+            </div>
+            <div class="cave_container">
+                <div class="cave_header">Cave</div>
+                <div class="cave_earning">(earns 5-10 gold)</div>
+                <form action="/process_money" method="POST" class="button_cave">
+                    <input type="hidden" name="real_estate" value="cave">
+                    <input type="submit" value='Find Gold!'>
+                </form>
+            </div>
+            <div class="house_container">
+                <div class="house_header">House</div>
+                <div class="house_earning">(earns 2-5 gold)</div>
+                <form action="/process_money" method="POST" class="button_house">
+                    <input type="hidden" name="real_estate" value="house">
+                    <input type="submit" value='Find Gold!'>
+                </form>
+            </div>
+            <div class="casino_container">
+                <div class="casino_header">Casino</div>
+                <div class="casino_earning">(earns/takes 0-50 gold)</div>
+                <form action="/process_money" method="POST" class="button_casino">
+                    <input type="hidden" name="real_estate" value="casino">
+                    <input type="submit" value='Find Gold!'>
+                </form>
+            </div>
+        </div>
+        <div class="activities_header">Activities:</div>
+        <div class="activities">
+            {% for i in session.message|reverse %} 
+            <div>{{i}}</div>
+            {% endfor %}
+        </div>
+        <form action="/process_money" method="POST">
+            <input type="hidden" name="lights_out" value="clear">
+            <input type="submit" value='Clear Activities!'>
+        </form>
+    </div>
+</body>
+</html>
