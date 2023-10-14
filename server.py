@@ -55,7 +55,10 @@ def process():
             session['message'].append(f"Entered a casino and earned {gold}... Great job!")
         return redirect('/')
     
-
+@app.route('/clear', methods=["POST"])
+def clear_session():
+    session.clear()
+    return redirect('/')
 
 if __name__ == "__main__":
     app.run(debug=True, port=5001)
